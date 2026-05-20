@@ -1,40 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kicklytics</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
-    .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 12px; }
-    input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; }
-    button { width: 100%; padding: 12px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; }
-    .result { margin-top: 20px; padding: 15px; background: #e0f2fe; border-radius: 8px; text-align: center; font-weight: bold; }
-  </style>
+<title>MatchStat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { 
+  font-family: Arial, sans-serif; 
+  text-align: center; 
+  padding: 50px; 
+  background: #1a1a1a; 
+  color: white;
+}
+h1 { color: #4CAF50; }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h2>⚽ Kicklytics</h2>
-    <input type="number" id="goals" placeholder="Goals scored">
-    <input type="number" id="assists" placeholder="Assists">
-    <input type="number" id="shots" placeholder="Shots on target">
-    <input type="number" id="passes" placeholder="Passes completed">
-    <button onclick="calculate()">Calculate Score</button>
-    <div id="output" class="result" style="display:none;"></div>
-  </div>
-
-  <script>
-    function calculate() {
-      let g = parseInt(document.getElementById('goals').value) || 0;
-      let a = parseInt(document.getElementById('assists').value) || 0;
-      let s = parseInt(document.getElementById('shots').value) || 0;
-      let p = parseInt(document.getElementById('passes').value) || 0;
-      
-      let score = g*10 + a*5 + s*2 + p*0.1;
-      score = Math.round(score * 10) / 10;
-      
-      document.getElementById('output').style.display = 'block';
-      document.getElementById('output').innerText = 'Match Score: ' + score;
-    }
-  </script>
+<h1>MatchStat</h1>
+<p>Match stats and analysis for top football leagues</p>
 </body>
 </html>
