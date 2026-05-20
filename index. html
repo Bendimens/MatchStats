@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kicklytics</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 15px;
+}
+h1 {
+  text-align: center;
+  color: #222;
+  font-size: 22px;
+}
+.league {
+  background: white;
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.league h2 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #0066cc;
+}
+.match {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+.match:last-child {
+  border-bottom: none;
+}
+.teams {
+  font-weight: bold;
+  font-size: 16px;
+}
+.form {
+  margin: 5px 0;
+}
+.form span {
+  display: inline-block;
+  padding: 2px 6px;
+  margin: 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: white;
+}
+.W { background: #28a745; }
+.D { background: #ffc107; color: black; }
+.L { background: #dc3545; }
+.analysis {
+  font-size: 14px;
+  color: #444;
+  margin-top: 5px;
+}
+</style>
+</head>
+<body>
+
+<h1>Kicklytics</h1>
+<div id="app"></div>
+
+<script>
+const data = {
+  "Premier League": [
+    { home: "Arsenal", away: "Chelsea", formHome: ["W","W","D","W","L"], formAway: ["W","D","W","W","L"],
+      analysis: "Arsenal strong at home. Chelsea dangerous on counter. Expect goals both sides." }
+  ],
+  "La Liga": [
+    { home: "Barcelona", away: "Real Madrid", formHome: ["W","W","W","D","W"], formAway: ["W","W","D","W","W"],
+      analysis: "El Clásico. High possession vs fast counters. Midfield battle decides it." }
+  ],
+  "Bundesliga": [
+    { home: "Bayern Munich", away: "Dortmund", formHome: ["W","W","W","W","D"], formAway: ["W","D","W","L","W"],
+      analysis: "High tempo, lots of chances. Bayern edge due to home form." }
+  ],
+  "Serie A": [
+    { home: "Inter Milan", away: "AC Milan", formHome: ["W","W","D","W","W"], formAway: ["W","L","W","W","D"],
+      analysis: "Milan Derby. Tight defensively. Set pieces could decide it." }
+  ],
+  "Ligue 1": [
+    { home: "PSG", away: "Marseille", formHome: ["W","W","W","D","W"], formAway: ["W","D","L","W","W"],
+      analysis: "PSG have more firepower. Marseille need to stay compact." }
+  ],
+  "Saudi Pro League": [
+    { home: "Al Nassr", away: "Al Hilal", formHome: ["W","W","D","W","L"], formAway: ["W","W","W","D","W"],
+      analysis: "Big clash. Both have world-class attackers. High scoring likely." }
+  ],
+  "J1 League": [
+    { home: "Kawasaki Frontale", away: "Urawa Reds", formHome: ["W","D","W","W","L"], formAway: ["D","W","W","L","W"],
+      analysis: "Fast passing game. Kawasaki better at home this season." }
+  ],
+  "K League 1": [
+    { home: "Ulsan HD", away: "Jeonbuk", formHome: ["W","W","W","D","W"], formAway: ["W","L","W","W","D"],
+      analysis: "Top 2 clash. Ulsan slightly better defensively." }
+  ],
+  "NBA": [
+    { home: "Lakers", away: "Celtics", formHome: ["W","L","W","W","L"], formAway: ["W","W","W","L","W"],
+      analysis: "Rivalry game. Celtics shooting better from 3 lately." }
+  ]
+};
+
+function render() {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+  
+  for (let league in data) {
+    let leagueDiv = document.createElement("div");
+    leagueDiv.className = "league";
+    
+    let html = `<h2>${league}</h2>`;
+    
+    data[league].forEach(match => {
+      html += `
+        <div class="match">
+          <div class="teams">${match.home} vs ${match.away}</div>
+          <div class="form">
+            <strong>${match.home}:</strong> ${match.formHome.map(f => `<span class="${f}">${f}</span>`).join("")}
+            <br>
+            <strong>${match.away}:</strong> ${match.formAway.map(f => `<span class="${f}">${f}</span>`).join("")}
+          </div>
+          <div class="analysis">${match.analysis}</div>
+        </div>
+      `;
+    });
+    
+    leagueDiv.innerHTML = html;
+    app.appendChild(leagueDiv);
+  }
+}
+
+render();
+</script>
+
+</body>
+</html>
